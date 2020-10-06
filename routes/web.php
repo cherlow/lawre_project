@@ -35,3 +35,7 @@ Route::get('/leavereview/{bid}', 'HomeController@leavereview');
 Route::post('/reviewsave/{bid}', 'HomeController@reviewsave');
 Route::get('/imagedelete/{image}', 'HomeController@imagedelete');
 Route::post('/productupdate/{product}', 'HomeController@productupdate');
+Route::get('/adminbuyers', 'AdminController@getbuyers');
+Route::get('/adminsellers', 'AdminController@getsellers');
+Route::get('/adminproducts', 'AdminController@getproducts');
+Route::get('/admincategories', 'AdminController@getcategories');

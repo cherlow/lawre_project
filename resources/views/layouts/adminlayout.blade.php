@@ -60,7 +60,7 @@
                 </div>
                 <div class="nav-right col">
 
-                    </li>
+
 
                     <li class="onhover-dropdown">
                         <div class="media align-items-center"><img
@@ -112,23 +112,23 @@
                     <ul class="sidebar-menu">
                         <li><a class="sidebar-header" href="{{url('/home')}}"><i
                                     data-feather="home"></i><span>Dashboard</span></a></li>
-                     
-                        <li><a class="sidebar-header" href="index.html"><i
+
+                        <li><a class="sidebar-header" href="{{"/adminbuyers"}}"><i
                                     data-feather="users"></i><span>Buyers</span></a></li>
-                        <li><a class="sidebar-header" href="index.html"><i
+                        <li><a class="sidebar-header" href="{{"/adminsellers"}}"><i
                                     data-feather="user"></i><span>Sellers</span></a></li>
 
-                        <li><a class="sidebar-header" href="index.html"><i
+                        <li><a class="sidebar-header" href="{{"/adminproducts"}}"><i
                                     data-feather="box"></i><span>Products</span></a></li>
-                        <li><a class="sidebar-header" href="index.html"><i
+                        <li><a class="sidebar-header" href="{{"/admincategories"}}"><i
                                     data-feather="tag"></i><span>Categories</span></a></li>
 
 
 
 
                         <li><a class="sidebar-header" href="reports.html"><i
-                                    data-feather="bar-chart"></i><span>Reports</span></a></li>
-                        
+                                    data-feather="bar-chart"></i><span>Charts</span></a></li>
+
 
 
                     </ul>

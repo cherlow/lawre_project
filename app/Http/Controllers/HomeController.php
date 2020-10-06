@@ -87,6 +87,9 @@ class HomeController extends Controller
             $bids = auth()->user()->products;
             return view('backend.sellerbids')->with('bids', $bids)->with('products', $products);
         }
+        else{
+           return redirect("/home");
+        }
     }
     public function reviews()
     {
@@ -151,9 +154,9 @@ class HomeController extends Controller
     }
 
     public function productupdate(Request $request, Product $product){
-  
-      
-    
+
+
+
         $product->name = $request->input('name');
         $product->category_id = $request->input('category');
         $product->price = $request->input('price');

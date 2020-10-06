@@ -69,10 +69,9 @@
                                 </div>
                             </form>
                         </li> --}}
-                        <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i
-                                    data-feather="maximize-2"></i></a></li>
 
-                        <li class="onhover-dropdown"><i data-feather="bell"></i><span
+
+                        {{-- <li class="onhover-dropdown"><i data-feather="bell"></i><span
                                 class="badge badge-pill badge-primary pull-right notification-badge">{{count(auth()->user()->unreadNotifications)}}</span><span
                                 class="dot"></span>
                             <ul class="notification-dropdown onhover-show-div p-0">
@@ -96,30 +95,17 @@
 
 
                             </ul>
+                        </li> --}}
+
+                        <li><a href="#" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                    data-feather="log-out"></i>Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
                         </li>
 
-                        <li class="onhover-dropdown">
-                            <div class="media align-items-center"><img
-                                    class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded"
-                                    src="/avatar.jpeg" alt="header-user">
-                                <div class="dotted-animation"><span class="animate-circle"></span><span
-                                        class="main-circle"></span></div>
-                            </div>
-                            <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
-                                {{-- <li><a href="#"><i data-feather="user"></i>Edit Profile</a></li> --}}
-
-
-
-                                <li><a href="#" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"><i
-                                            data-feather="log-out"></i>Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                     <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div>
                 </div>

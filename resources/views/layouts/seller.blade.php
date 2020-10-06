@@ -69,53 +69,17 @@
                                 </div>
                             </form>
                         </li> --}}
-                        <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i
-                                    data-feather="maximize-2"></i></a></li>
-
-                        <li class="onhover-dropdown"><i data-feather="bell"></i><span
-                                class="badge badge-pill badge-primary pull-right notification-badge">{{count(auth()->user()->unreadNotifications)}}</span><span
-                                class="dot"></span>
-                            <ul class="notification-dropdown onhover-show-div p-0">
-                                <li>Notification <span
-                                        class="badge badge-pill badge-primary pull-right">{{count(auth()->user()->unreadNotifications)}}</span>
-                                </li>
-
-                                @foreach (auth()->user()->unreadNotifications as $notification)
-
-                                <li>
-                                    <div class="media">
-                                        <div class="media-body">
-                                            <h6 class="mt-0 txt-danger">{{ $notification->data['title']   }} <span
-                                                    class=" txt-success">({{\Carbon\Carbon::parse($notification->created_at)->diffForhumans() }})
-                                                </span> </h6>
-                                            <p class="mb-0">{{ $notification->data['message'] }}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                @endforeach
 
 
 
-                            </ul>
-                        </li>
 
-                        <li class="onhover-dropdown">
-                            <div class="media align-items-center"><img
-                                    class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded"
-                                    src="/avatar.jpeg" alt="header-user">
-                                <div class="dotted-animation"><span class="animate-circle"></span><span
-                                        class="main-circle"></span></div>
-                            </div>
-                            <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
-                                <li><a href="#" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();"><i
-                                            data-feather="log-out"></i>Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
+                        <li><a href="#" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i
+                                    data-feather="log-out"></i>Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                     <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div>
