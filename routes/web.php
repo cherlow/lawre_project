@@ -23,6 +23,7 @@ Route::get('/allitems', 'PagesController@allitems');
 Route::get('/sellerproducts', 'HomeController@sellerproducts');
 Route::get('/selleraddproducts', 'HomeController@selleraddproducts');
 Route::get('/sellereditproducts/{product}', 'HomeController@sellereditproducts');
+Route::get('/category/{category}', 'PagesController@categoryproducts');
 
 Route::post('/role', 'RoleController@store');
 Route::get('/bids', 'HomeController@bids');
