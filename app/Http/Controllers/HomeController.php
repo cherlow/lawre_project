@@ -40,11 +40,11 @@ class HomeController extends Controller
             return view('backend.buyers');
         }
 
-        $sellers=User::where('role',1)->get();
-        $buyers=User::where('role',2)->get();
-        $products=Product::all();
-        $bids=Bid::all();
-        return view('home')->with('sellers',$sellers)->with('buyers',$buyers)->with('products',$products)->with('bids',$bids);
+        $sellers = User::where('role', 1)->get();
+        $buyers = User::where('role', 2)->get();
+        $products = Product::all();
+        $bids = Bid::all();
+        return view('home')->with('sellers', $sellers)->with('buyers', $buyers)->with('products', $products)->with('bids', $bids);
     }
     public function roles()
     {
@@ -84,11 +84,10 @@ class HomeController extends Controller
             return view('backend.buyerbids')->with('bids', $bids)->with('products', $products);
         } else  if (auth()->user()->role == 1) {
 
-            $bids = auth()->user()->products;
+            $bids = auth()->user()->products->where("status", 1);
             return view('backend.sellerbids')->with('bids', $bids)->with('products', $products);
-        }
-        else{
-           return redirect("/home");
+        } else {
+            return redirect("/home");
         }
     }
     public function reviews()
@@ -142,18 +141,20 @@ class HomeController extends Controller
         return redirect('/reviews');
     }
 
-    public function imagedelete(Image $image){
-        $product=$image->product_id;
+    public function imagedelete(Image $image)
+    {
+        $product = $image->product_id;
 
         $image->delete();
 
         toastr()->success("Image Deleted Successfully");
 
-        return redirect("/sellereditproducts/".$product);
+        return redirect("/sellereditproducts/" . $product);
         return $image;
     }
 
-    public function productupdate(Request $request, Product $product){
+    public function productupdate(Request $request, Product $product)
+    {
 
 
 

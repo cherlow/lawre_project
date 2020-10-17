@@ -126,8 +126,8 @@
 
 
 
-                        <li><a class="sidebar-header" href="reports.html"><i
-                                    data-feather="bar-chart"></i><span>Charts</span></a></li>
+                        {{-- <li><a class="sidebar-header" href="/datatables"><i
+                                    data-feather="bar-chart"></i><span>Charts</span></a></li> --}}
 
 
 

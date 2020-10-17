@@ -39,3 +39,13 @@ Route::get('/adminbuyers', 'AdminController@getbuyers');
 Route::get('/adminsellers', 'AdminController@getsellers');
 Route::get('/adminproducts', 'AdminController@getproducts');
 Route::get('/admincategories', 'AdminController@getcategories');
+Route::post('/categories', 'AdminController@addcategories');
+Route::get('/delete/{category}', 'AdminController@deletecategories');
+Route::get('/datatables', 'DataTablesController@index');
+
+Route::get('mail', function () {
+    $order = App\Bid::find(1);
+
+    return (new App\Notifications\BidNotification($order))
+        ->toMail($order->user);
+});

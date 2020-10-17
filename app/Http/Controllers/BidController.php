@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Bid;
+use App\Notifications\BidAccept;
 use App\Notifications\BidOn;
 use App\Notifications\BidNotification;
 use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Support\Facades\Notification;
 
 class BidController extends Controller
 {
@@ -52,7 +54,6 @@ class BidController extends Controller
             return  redirect('/singleitem/' . $product->id);
         } else {
             $pbids = $product->bids;
-
             $bid = new Bid();
             $bid->product_id = $product->id;
             $bid->user_id = auth()->user()->id;
@@ -60,10 +61,19 @@ class BidController extends Controller
             $bid->status = 0;
             $bid->save();
 
+
+            // Create product user notification
+
+            Notification::send($bid->product->user, new BidNotification($bid));
+
+
             // $product->user->notify(new BidOn($bid));
 
-            foreach ($pbids as $bid) {
-                $bid->user->notify(new BidNotification($bid));
+
+
+            foreach ($pbids as $pbid) {
+
+                Notification::send($pbid->user, new BidOn($bid));
             }
 
 
@@ -131,8 +141,12 @@ class BidController extends Controller
         $bid->status = 1;
         $bid->save();
 
-        $products = Product::orderBy('id','desc')->get();
-        $bids = auth()->user()->products;
+        Notification::send($bid->user, new BidAccept($bid));
+
+
+
+        $products = Product::orderBy('id', 'desc')->get();
+        $bids = auth()->user()->products->where("status", 1);
 
         toastr()->success("Bid Accepted Successfully");
         return view('backend.sellerbids')->with('bids', $bids)->with('products', $products);

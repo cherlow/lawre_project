@@ -2,16 +2,17 @@
 
 namespace App\Notifications;
 
-use App\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BidOn extends Notification
+class BidAccept extends Notification
 {
-    use Queueable;
     private $bid;
+
+    use Queueable;
+
     /**
      * Create a new notification instance.
      *
@@ -43,10 +44,10 @@ class BidOn extends Notification
     {
         return (new MailMessage)
             ->from('notify@auctions.com', 'inotify')
-            ->subject('Bid Status')
-            ->greeting('Hello! ')
-            ->line($this->bid->user->name . ' has  placed a bid of ksh: ' . $this->bid->bid_amount . ' on  a product you are bidding on  ' . $this->bid->product->name)
-            ->action('Check it out', url('/'));
+            ->subject('Bid Accept Status')
+            ->greeting('Hello! ' . $this->bid->user->name)
+            ->line("Your bid on product " . $this->bid->product->name . " Has been accepted. Contact the seller on " . $this->bid->product->user->email . " and dont forget to review the seller on the quality of product ")
+            ->action('Review The Seller', url('/reviews'));
     }
 
     /**
@@ -57,12 +58,8 @@ class BidOn extends Notification
      */
     public function toArray($notifiable)
     {
-        $product = Product::find($this->bid->product_id);
-
-
         return [
-            "title" => "new bid on your product",
-            "message" => $product->user->name . ' placed a bid on your product ' . $product->name
+            //
         ];
     }
 }

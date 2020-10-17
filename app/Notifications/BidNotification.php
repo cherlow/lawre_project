@@ -31,7 +31,7 @@ class BidNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail'];
     }
 
     /**
@@ -43,9 +43,11 @@ class BidNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->from('notify@auctions.com', 'inotify')
+            ->subject('Product Status')
+            ->greeting('Hello! ' . $this->bid->product->user->name)
+            ->line($this->bid->user->name . ' has  placed a bid of ksh: ' . $this->bid->bid_amount . ' on your product  ' . $this->bid->product->name)
+            ->action('Check it out', url('/bids'));
     }
 
     /**

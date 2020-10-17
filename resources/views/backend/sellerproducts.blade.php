@@ -40,8 +40,17 @@
                     <div class="card-body product-box">
                         <div class="img-wrapper">
                             <div class="front">
+
+                                @if (count($product->images)>1)
                                 <a href="#"><img src="/uploads/{{$product->images[0]->image_name}}"
                                         class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                @else
+                                <a href="#"><img src="/uploads/{{$product->images->first()->image_name}}"
+                                        class="img-fluid blur-up lazyload bg-img" alt=""></a>
+
+                             
+                                @endif
+
 
                             </div>
                         </div>
@@ -71,7 +80,7 @@
                                     ksh {{$product->price}}
                                 </span>
                                 <span class="float-right">
-                                {{count($product->bids)  }} bid(s)
+                                    {{count($product->bids)  }} bid(s)
                                 </span>
 
                             </p>

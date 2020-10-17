@@ -42,4 +42,26 @@ class AdminController extends Controller
         $categories = Category::all();
         return view('backend.admincategories')->with('categories', $categories);
     }
+
+    public function addcategories(Request $request)
+    {
+
+
+
+        $category = new Category();
+        $category->name = $request->name;
+
+        $category->save();
+        return redirect("/admincategories");
+    }
+
+    public function deletecategories(Category $category)
+    {
+
+
+
+        $category->delete();
+
+        return redirect("/admincategories");
+    }
 }
